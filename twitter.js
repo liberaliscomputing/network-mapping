@@ -37,7 +37,7 @@ rawHandles.forEach(function (rawHandle, handleIndex) {
 						user.mutualFollowing = [];
 						users.slice(userIndex + 1, users.length).forEach(function (sliced) {
 							if (sliced.idStr in user.friends) user.mutualFollowing.push(sliced.screenName);
-							console.log(users);						
+							console.log(users); // for test						
 						}); 
 					});
 				}
