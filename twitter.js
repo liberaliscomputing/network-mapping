@@ -1,6 +1,6 @@
-var env = require('dotenv').load(),
-	csvjson = require('csvjson'),
-	Twitter = require('twitter');
+var env = require('dotenv').load();
+var	csvjson = require('csvjson');
+var	Twitter = require('twitter');
 
 // load csv
 var pathHandles = 'data/handles.csv';
@@ -20,7 +20,7 @@ var client = new Twitter({
 
 // given a handle, retrieve stringtied id, profile image url, and array of ids of friends
 rawHandles.forEach(function (rawHandle, handleIndex) {
-	if (handleIndex < 3) {
+	if (handleIndex < 15) {
 		var userInfo = {};
 		client.get('users/show', { screen_name: rawHandle.handle }, function (error, result, response) {
 			if (error) console.log(error); 
@@ -31,12 +31,13 @@ rawHandles.forEach(function (rawHandle, handleIndex) {
 				if (error) console.log(error);
 				userInfo.friends = results.ids;
 				users.push(userInfo);
-				if (handleIndex === 2) {
+				if (handleIndex === 14) {
 					users.forEach(function (user, userIndex) {
 						if (userIndex === handleIndex) return false;
-						var mutualFollowing = [];
+						user.mutualFollowing = [];
 						users.slice(userIndex + 1, users.length).forEach(function (sliced) {
-							if (sliced.idStr in user.friends) mutualFollowing.push(sliced.screenName);							
+							if (sliced.idStr in user.friends) user.mutualFollowing.push(sliced.screenName);
+							console.log(users);						
 						}); 
 					});
 				}
