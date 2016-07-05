@@ -1,7 +1,7 @@
 {
-  "name": "network-mapping",
+  "name": "network-mapping-js",
   "version": "0.0.1",
-  "description": "A network mapping proto",
+  "description": "A visual navigation app to facilitate netowrking at MozFest",
   "engines": {
     "node": "6.0.0"
   },
@@ -13,7 +13,7 @@
     "dotenv": "2.0.0",
     "csvjson": "1.0.5",
     "twitter": "1.3.0",
-		"d3": "3.5.17"
+		"cytoscape": "2.7.4"
   },
   "repository": {
     "type": "git",
