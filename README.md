@@ -1,1 +1,3 @@
-A prototype of a realtime network mapping system for MozFest 
+#MozFest Network Mapping Project
+Lead developer(s): Meen Chul Kim (https://github.com/liberaliscomputing)
+
