@@ -1,9 +1,58 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 	<head>
-	</head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link type="text/css" rel="stylesheet" href="bower_components/bootswatch/readable/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/style.css">
 
+		<title>MozFest Network Mapping</title>
+	</head>
 	<body>
+		<nav class="navbar navbar-default">
+			<div class="container">
+
+				<!-- star un-collapsed navbar-->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">MozFest Network Mapping</a>
+				</div>
+
+				<!-- star un-collapsed navbar-->
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="index.html">Home</a></li>
+						<li><a href="#">About</a></li>
+					</ul>
+					<form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<div class="input-group">
+								<input type="text" class="form-control" id="query" placeholder="Search">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button">Search</button>
+								</span>
+							</div>
+						</div>
+					</form>
+					<ul class="nav navbar-nav navbar-right">
+        		<li><a href="#">Log in</a></li>
+        	</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div id="cy"></div>
+
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="js/cytoscape.min.js"></script>
+		<script src="js/network-data.js"></script>
+		<script src="js/network-mapping.js"></script>
+		
 	</body>
 </html>
