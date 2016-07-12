@@ -8,7 +8,11 @@ var cy = cytoscape({
     {
       selector: 'node',
       style: {
-        label: 'data(id)'
+				'width': '50px',
+				'height': '50px',
+        'label': 'data(id)',
+				'background-image': 'data(profileImageUrlHttps)',
+				'background-fit':'contain'
       }
     },
     {
