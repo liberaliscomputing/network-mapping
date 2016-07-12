@@ -3,4 +3,5 @@ data/
 .env
 .DS_Store
 *.py
+.idea/
 
