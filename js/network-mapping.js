@@ -1,7 +1,7 @@
 var cy = cytoscape({
   container: document.getElementById('cy'),
   layout: {
-    name: 'cose'
+    name: 'concentric'
   },
   elements: network,
   style: [
@@ -10,7 +10,7 @@ var cy = cytoscape({
       style: {
 				'width': '50px',
 				'height': '50px',
-        'label': 'data(id)',
+				'label': 'data(id)',
 				'background-image': 'data(profileImageUrlHttps)',
 				'background-fit':'contain'
       }
