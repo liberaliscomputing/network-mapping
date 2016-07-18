@@ -1,3 +1,4 @@
+//initialize a graph
 var cy = cytoscape({
   container: document.getElementById('cy'),
   layout: {
@@ -22,4 +23,10 @@ var cy = cytoscape({
       }
     }
   ]
+});
+
+//open a clicked node's Twitter profile in a new window tab
+cy.on('click', 'node', function(){
+	var url = 'https://twitter.com/';
+	window.open(url + this.id(),'_blank');
 });
