@@ -31,6 +31,9 @@ cy.on('click', 'node', function(){
 	window.open(url + this.id(),'_blank');
 });
 
-//calculate each node's pagerank value
-var pageRank = cy.elements().pageRank(0.85, 0.001);
-console.log('g rank: ' + pageRank.rank('node'));
+//calculate each node's PageRank and betweennees centrality values
+var pr = cy.elements().pageRank(0.85, 0.001),
+	bc = cy.elements().bc();
+cy.nodes().forEach(function(node) {
+	console.log(pr.rank(node), bc.betweenness(node));
+});
