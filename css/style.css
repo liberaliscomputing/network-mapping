@@ -1,7 +1,7 @@
 #cy {
-  width: 100%;
+  width: 50%;
   height: 100%;
-  position: absolute;
-  top: 10%;
+  position: fixed;
+  margin: auto;
   left: 0px;
 }
