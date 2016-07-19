@@ -1,4 +1,4 @@
-//initialize a graph
+//initialize a base graph
 var cy = cytoscape({
   container: document.getElementById('cy'),
   layout: {
@@ -30,3 +30,7 @@ cy.on('click', 'node', function(){
 	var url = 'https://twitter.com/';
 	window.open(url + this.id(),'_blank');
 });
+
+//calculate each node's pagerank value
+var pageRank = cy.elements().pageRank(0.85, 0.001);
+console.log('g rank: ' + pageRank.rank('node'));
