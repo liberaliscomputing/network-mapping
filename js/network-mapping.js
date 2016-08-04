@@ -1,39 +1,60 @@
 //initialize a base graph
 var cy = cytoscape({
-  container: document.getElementById('cy'),
-  layout: {
-    name: 'concentric'
-  },
-  elements: network,
-  style: [
-    {
-      selector: 'node',
-      style: {
-				'width': '50px',
-				'height': '50px',
-				'label': 'data(id)',
-				'background-image': 'data(profileImageUrlHttps)',
-				'background-fit':'contain'
-      }
-    },
-    {
-      selector: 'edge',
-      style: {
-        'curve-style': 'unbundled-bezier'
-      }
-    }
-  ]
+	container: document.getElementById('vis')
 });
+
+//add nodes to graph
+dataset.nodes.forEach(function(node) {
+	cy.add(node);
+});
+
+//add links to graph
+dataset.links.forEach(function(link) {
+	cy.add(link);
+});
+
+//set layout
+cy.layout({ name: 'concentric' });
+
+//set node style
+cy.style()
+	.selector('node')
+	.style({
+		'width': 20,
+		'height': 20,
+		'label': 'data(id)',
+		'font-size': 10,
+		'background-fit': 'contain'
+	})
+	.update();
+
+//set node image
+cy.nodes().forEach(function(node) {
+	node.style('background-image', imgUrlCheck(node.data('img')));
+});
+
+//set edge style
+cy.style()
+	.selector('edge')
+	.style({
+		'width': '1px',
+		'curve-style': 'unbundled-bezier'
+	})
+	.update();
 
 //open a clicked node's Twitter profile in a new window tab
-cy.on('click', 'node', function(){
-	var url = 'https://twitter.com/';
-	window.open(url + this.id(),'_blank');
-});
+var setEvents = cy
+//Open a clicked handle's Twitter profile
+	.on('click', 'node', function() {
+		var url = 'https://twitter.com/';
+		window.open(url + this.id(),'_blank');
+	});
 
-//calculate each node's PageRank and betweennees centrality values
-var pr = cy.elements().pageRank(0.85, 0.001),
-	bc = cy.elements().bc();
-cy.nodes().forEach(function(node) {
-	console.log(pr.rank(node), bc.betweenness(node));
-});
+//check 404 error of profile image
+function imgUrlCheck(url) {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', url, false);
+	xhr.send();
+	if (xhr.status == 404) return 'https://abs.twimg.com/a/1470223016/img/t1/favicon.svg';
+	else return url;
+}
