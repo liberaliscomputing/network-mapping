@@ -1,0 +1,36 @@
+{
+  "name": "cytoscape-cose-bilkent",
+  "version": "1.3.8",
+  "description": "The CoSE layout for Cytoscape.js by Bilkent",
+  "main": "cytoscape-cose-bilkent.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cytoscape/cytoscape.js-cose-bilkent.git"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "keywords": [
+    "cytoscape",
+    "cyext"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "cytoscape": "^2.4.0"
+  },
+  "homepage": "https://github.com/cytoscape/cytoscape.js-cose-bilkent",
+  "_release": "1.3.8",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.3.8",
+    "commit": "ce845c5df1490fae7a063b35d7130ce54fc57bb5"
+  },
+  "_source": "https://github.com/cytoscape/cytoscape.js-cose-bilkent.git",
+  "_target": "^1.3.8",
+  "_originalSource": "cytoscape-cose-bilkent",
+  "_direct": true
+}
