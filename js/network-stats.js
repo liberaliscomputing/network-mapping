@@ -1,16 +1,10 @@
 //initialize a base graph
 var cy = cytoscape({
-	container: document.getElementById("stats")
-});
-
-//add nodes to graph
-dataset.nodes.forEach(function(node) {
-	cy.add(node);
-});
-
-//add links to graph
-dataset.links.forEach(function(link) {
-	cy.add(link);
+	container: document.getElementById("stats"),
+	elements: {
+		nodes: dataset.nodes,
+		edges: dataset.links
+	}
 });
 
 //calculate each node's PageRank and betweennees centrality values
@@ -45,7 +39,7 @@ stats.weights = [];
 stats.pgrks = [];
 stats.bwcts = [];
 
-for (var i = 0; i < 4; i++) {
+for (var i = 0; i < 3; i++) {
 	var weight = {},
 		pgrk = {},
 		bwct = {};
@@ -67,27 +61,27 @@ for (var i = 0; i < 4; i++) {
 }
 
 //build mustache template
-var template = "<div class='page-header'><h3># of Connections</h3></div>" +
+var template = "<h4># of Connections</h4>" +
 	"<div class='row' align='center'>{{#weights}}" +
-	"<div class='col-md-3'>" +
+	"<div class='col-md-4'>" +
 	"<a href='https://twitter.com/{{id}}' target='_blank'>" +
-	"<img class='img-rounded' src='{{img}}' data-toggle='tooltip' data-placement='right' title='{{weight}}'></a>" +
+	"<img src='{{img}}' data-toggle='tooltip' data-placement='right' title='{{weight}}'></a>" +
 	"<p>{{id}}</p></div>" +
 	"{{/weights}}</div>" +
 
-	"<div class='page-header'><h3>PageRank</h3></div>" +
+	"<h4>PageRank</h4>" +
 	"<div class='row' align='center'>{{#pgrks}}" +
-	"<div class='col-md-3'>" +
+	"<div class='col-md-4'>" +
 	"<a href='https://twitter.com/{{id}}' target='_blank'>" +
-	"<img class='img-rounded' src='{{img}}' data-toggle='tooltip' data-placement='right' title='{{pgrk}}'></a>" +
+	"<img src='{{img}}' data-toggle='tooltip' data-placement='right' title='{{pgrk}}'></a>" +
 	"<p>{{id}}</p></div>" +
 	"{{/pgrks}}</div>" +
 
-	"<div class='page-header'><h3>Betweenness Centrality</h3></div>" +
+	"<h4>Betweenness Centrality</h4>" +
 	"<div class='row' align='center'>{{#bwcts}}" +
-	"<div class='col-md-3'>" +
+	"<div class='col-md-4'>" +
 	"<a href='https://twitter.com/{{id}}' target='_blank'>" +
-	"<img class='img-circle' src='{{img}}' data-toggle='tooltip' data-placement='right' title='{{bwct}}' ></a>" +
+	"<img src='{{img}}' data-toggle='tooltip' data-placement='right' title='{{bwct}}' ></a>" +
 	"<p>{{id}}</p></div>" +
 	"{{/bwcts}}</div>";
 
