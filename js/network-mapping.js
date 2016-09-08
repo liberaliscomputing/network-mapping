@@ -53,18 +53,40 @@ var altStylesheet = cytoscape.stylesheet()
 		})
 	.selector('node.hover')
 		.style({
-			'text-opacity': 1,
 			'width': 40,
 			'height': 40,
-			'font-size': 20
+			'border-width': 2,
+			'border-color': '#fff',
+			'text-opacity': 1,
+			'font-size': 20,
+			'z-index': 1
+		})
+	.selector('node.highlight')
+		.style({
+			'border-color': '#fff',
+			'border-width': 2
+		})
+	.selector('node.transparent')
+		.style({
+			'opacity': 0.2
 		})
 	.selector('edge')
 		.style({
 			'line-color': '#666',
-			'width': 5,
+			'width': 3,
 			'opacity': 0.5,
 			'curve-style': 'unbundled-bezier',
-			'overlay-color': '#666'
+			'overlay-color': '#666',
+			'z-index': 0
+		})
+	.selector('edge.highlight')
+		.style({
+			'line-color': '#fff',
+			'opacity': 0.75
+		})
+	.selector('edge.transparent')
+		.style({
+			'opacity': 0.25
 		})
 ;
 
@@ -96,14 +118,20 @@ var setEvents = cy
 		});
 	})
 	.on('doubleTap', 'node', function(){
-		var url = 'https://twitter.com/';
+		var url = 'https://mobile.twitter.com/';
 		window.open(url + this.id(),'_blank');
 	})
-	.on('mouseover', 'node', function(){
+	.on('mouseover', 'node', function(e){
 		this.addClass('hover');
+		var sel = e.cyTarget;
+		cy.elements().difference(sel.outgoers()).not(sel).addClass('transparent');
+		sel.addClass('highlight').outgoers().addClass('highlight');
 	})
-	.on('mouseout', 'node', function(){
+	.on('mouseout', 'node', function(e){
 		this.removeClass('hover');
+		var sel = e.cyTarget;
+		cy.elements().removeClass('transparent');
+		sel.removeClass('highlight').outgoers().removeClass('highlight');
 	})
 ;
 
