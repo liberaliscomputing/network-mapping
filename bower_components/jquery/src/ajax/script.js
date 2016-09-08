@@ -1,17 +1,10 @@
-define( [
-	"../core",
-	"../var/document",
-	"../ajax"
-], function( jQuery, document ) {
-
 // Install script dataType
-jQuery.ajaxSetup( {
+jQuery.ajaxSetup({
 	accepts: {
-		script: "text/javascript, application/javascript, " +
-			"application/ecmascript, application/x-ecmascript"
+		script: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
 	},
 	contents: {
-		script: /\b(?:java|ecma)script\b/
+		script: /(?:java|ecma)script/
 	},
 	converters: {
 		"text script": function( text ) {
@@ -19,7 +12,7 @@ jQuery.ajaxSetup( {
 			return text;
 		}
 	}
-} );
+});
 
 // Handle cache's special case and crossDomain
 jQuery.ajaxPrefilter( "script", function( s ) {
@@ -29,20 +22,20 @@ jQuery.ajaxPrefilter( "script", function( s ) {
 	if ( s.crossDomain ) {
 		s.type = "GET";
 	}
-} );
+});
 
 // Bind script tag hack transport
 jQuery.ajaxTransport( "script", function( s ) {
-
 	// This transport only deals with cross domain requests
 	if ( s.crossDomain ) {
 		var script, callback;
 		return {
 			send: function( _, complete ) {
-				script = jQuery( "<script>" ).prop( {
+				script = jQuery("<script>").prop({
+					async: true,
 					charset: s.scriptCharset,
 					src: s.url
-				} ).on(
+				}).on(
 					"load error",
 					callback = function( evt ) {
 						script.remove();
@@ -52,8 +45,6 @@ jQuery.ajaxTransport( "script", function( s ) {
 						}
 					}
 				);
-
-				// Use native DOM manipulation to avoid our domManip AJAX trickery
 				document.head.appendChild( script[ 0 ] );
 			},
 			abort: function() {
@@ -63,6 +54,4 @@ jQuery.ajaxTransport( "script", function( s ) {
 			}
 		};
 	}
-} );
-
-} );
+});
