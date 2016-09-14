@@ -124,14 +124,14 @@ var setEvents = cy
 	.on('mouseover', 'node', function(e){
 		this.addClass('hover');
 		var sel = e.cyTarget;
-		cy.elements().difference(sel.outgoers()).not(sel).addClass('transparent');
-		sel.addClass('highlight').outgoers().addClass('highlight');
+		cy.elements().difference(sel.connectedEdges()).not(sel).addClass('transparent');
+		sel.addClass('highlight').connectedEdges().addClass('highlight').addClass('highlight');
 	})
 	.on('mouseout', 'node', function(e){
 		this.removeClass('hover');
 		var sel = e.cyTarget;
 		cy.elements().removeClass('transparent');
-		sel.removeClass('highlight').outgoers().removeClass('highlight');
+		sel.removeClass('highlight').connectedEdges().removeClass('highlight');
 	})
 ;
 
