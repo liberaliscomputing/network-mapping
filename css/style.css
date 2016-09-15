@@ -25,6 +25,11 @@
 }
 */
 
+#about {
+  margin: 50px;
+  background-color: #18bc9c;
+}
+
 footer {
   margin:5em 0
 }
