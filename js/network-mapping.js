@@ -104,18 +104,25 @@ var cy = cytoscape({
 	}
 });
 
-//open a clicked node's Twitter profile in a new window tab
-var setEvents = cy
-//Open a clicked handle's Twitter profile
-	.on('click', 'node', function(){
-		cy.animate({
-			zoom: 1.0,
-			center: {
-				eles: this
+// search and zoom to a handle
+$(function() {
+	$("#submit").click(function () {
+		var query = document.getElementById("query").value.toLowerCase();
+		cy.nodes().forEach(function(node) {
+			if(query == node.id().toLowerCase()) {
+				var result = cy.$('#' + query);
+				zoomToNode(result);
+				result.addClass('hover');
+				setTimeout(function(){ result.removeClass('hover'); }, 1500);
 			}
-		}, {
-			duration: 1000
 		});
+	})
+});
+
+// set manipulation events
+var setEvents = cy
+	.on('click', 'node', function(){
+		zoomToNode(this)
 	})
 	.on('doubleTap', 'node', function(){
 		var url = 'https://mobile.twitter.com/';
@@ -138,6 +145,18 @@ var setEvents = cy
 		connectedEles.removeClass('highlight');
 	})
 ;
+
+// add a zooming animation
+var zoomToNode = function(node) {
+	cy.animate({
+		zoom: 1.0,
+		center: {
+			eles: node
+		}
+	}, {
+		duration: 1000
+	});
+};
 
 // add a custom doubleTab event
 var tappedBefore;
