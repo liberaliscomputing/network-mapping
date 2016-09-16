@@ -55,8 +55,11 @@ for (var i = 0; i < 3; i++) {
 var template =
 	"<div class='row'>" +
 	"{{#weights}}" +
-	"<div class>" +
+	"<div class='card-container' ontouchstart='this.classList.toggle('hover');'>" +
 	"<div class='card'>" +
+	"<div class='front'>" +
+	"</div>" +
+	"<div class='back'>" +
 	"<div class='header'>" +
 	"<h3>Name</h3>" +
 	"</div>" +
@@ -69,6 +72,7 @@ var template =
 	"</div>" +
 	"<div class='view'>" +
 	"<a class='btn btn-info btn-sm' href='https://mobile.twitter.com/{{id}}' target='_blank'>View Profile</a>" +
+	"</div>" +
 	"</div>" +
 	"</div>" +
 	"</div>" +
@@ -77,8 +81,11 @@ var template =
 
 	"<div class='row'>" +
 	"{{#pgrks}}" +
-	"<div class>" +
+	"<div class='card-container' ontouchstart='this.classList.toggle('hover');'>" +
 	"<div class='card'>" +
+	"<div class='front'>" +
+	"</div>" +
+	"<div class='back'>" +
 	"<div class='header'>" +
 	"<h3>Name</h3>" +
 	"</div>" +
@@ -91,6 +98,7 @@ var template =
 	"</div>" +
 	"<div class='view'>" +
 	"<a class='btn btn-info btn-sm' href='https://mobile.twitter.com/{{id}}' target='_blank'>View Profile</a>" +
+	"</div>" +
 	"</div>" +
 	"</div>" +
 	"</div>" +
@@ -99,8 +107,11 @@ var template =
 
 	"<div class='row'>" +
 	"{{#bwcts}}" +
-	"<div class>" +
+	"<div class='card-container' ontouchstart='this.classList.toggle('hover');'>" +
 	"<div class='card'>" +
+	"<div class='front'>" +
+	"</div>" +
+	"<div class='back'>" +
 	"<div class='header'>" +
 	"<h3>Name</h3>" +
 	"</div>" +
@@ -113,6 +124,7 @@ var template =
 	"</div>" +
 	"<div class='view'>" +
 	"<a class='btn btn-info btn-sm' href='https://mobile.twitter.com/{{id}}' target='_blank'>View Profile</a>" +
+	"</div>" +
 	"</div>" +
 	"</div>" +
 	"</div>" +

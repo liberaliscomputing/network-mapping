@@ -3,6 +3,10 @@
   border-color: transparent;
 }
 
+#navbar form {
+  display: none;
+}
+
 #vis {
   /*
   top: 4.125em;
@@ -31,6 +35,9 @@
   background: #a9a9a9;
   width: 250px;
   color: #0b0b0b;
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
 }
 
 .card .header {
@@ -48,6 +55,26 @@
 .card .view {
   text-align: center;
   padding-bottom: 10px;
+}
+
+.card-container:hover .card, .card-container.hover .card {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  backface-visibility: hidden;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.back {
+  transform: rotateY(180deg);
 }
 
 .image img {
