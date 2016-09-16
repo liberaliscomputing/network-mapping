@@ -45,12 +45,11 @@
 						<li><a href="#about">About</a></li>
 					</ul>
 					-->
-					<!--
 
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#search">Search</a></li>
+						<li id="search"><a>Search</a></li>
 					</ul>
-					-->
+
 					<form class="navbar-form navbar-right" role="search">
 						<div class="form-group">
 							<div class="input-group">
@@ -110,5 +109,10 @@
 		<script src="js/network-data.js"></script>
 		<script src="js/network-mapping.js"></script>
 		<script src="js/network-stats.js"></script>
+		<script>
+			$("#search").click(function(){
+				$("form").slideToggle(1000, "swing");
+			});
+		</script>
 	</body>
 </html>
