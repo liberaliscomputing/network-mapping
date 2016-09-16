@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link type="text/css" rel="stylesheet" href="bower_components/bootswatch/darkly/bootstrap.min.css" media="all">
+		<link type="text/css" rel="stylesheet" href="css/normalize.css">
 		<link type="text/css" rel="stylesheet" href="css/style.css">
 		<title>MozFest Network Mapping</title>
 	</head>
@@ -39,9 +40,11 @@
 						</li>
 						<li><a href="#leaders">Connecting Leaders</a></li>
 					</ul>
+					<!--
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#about">About</a></li>
 					</ul>
+					-->
 					<!--
 
 					<ul class="nav navbar-nav navbar-right">
@@ -68,23 +71,13 @@
 			<div id="vis"></div>
 		</div>
 
-		<!--
 		<div id="leaders" class="container">
-			<div class="row">
-				<div id="card">
-					<div class="front">
-						<h1>Front content</h1>
-					</div>
-					<div class="back">
-						<h1>Back content</h1>
-					</div>
-				</div>
-			</div>
+		</div>
+
+		<!--
+		<div id="about" class="container">
 		</div>
 		-->
-
-		<div id="about" class="container-fluid">
-		</div>
 
 		<div class="container">
 			<footer>
@@ -110,12 +103,12 @@
 		<script src="bower_components/cytoscape/dist/cytoscape.min.js"></script>
 		<script src="bower_components/cytoscape-cose-bilkent/cytoscape-cose-bilkent.js"></script>
 		<script src="bower_components/mustache.js/mustache.min.js"></script>
-		<script src="bower_components/flip/dist/jquery.flip.min.js"></script>
-		<script src="js/network-data.js"></script>
-		<script src="js/network-mapping.js"></script>
 		<!--
-		<script src="js/network-stats.js"></script>
+		<script src="bower_components/flip/dist/jquery.flip.min.js"></script>
 		-->
 		<script src="js/manipulate.js"></script>
+		<script src="js/network-data.js"></script>
+		<script src="js/network-mapping.js"></script>
+		<script src="js/network-stats.js"></script>
 	</body>
 </html>
