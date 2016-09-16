@@ -1,12 +1,3 @@
-//initialize a base graph
-var cy = cytoscape({
-	container: document.getElementById("stats"),
-	elements: {
-		nodes: dataset.nodes,
-		edges: dataset.links
-	}
-});
-
 //calculate each node's PageRank and betweennees centrality values
 var pr = cy.elements().pageRank(0.85, 0.0001),
 	bc = cy.elements().betweennessCentrality();
@@ -61,33 +52,76 @@ for (var i = 0; i < 3; i++) {
 }
 
 //build mustache template
-var template = "<h4># of Connections</h4>" +
-	"<div class='row' align='center'>{{#weights}}" +
-	"<div class='col-md-4'>" +
-	"<a href='https://twitter.com/{{id}}' target='_blank'>" +
-	"<img src='{{img}}' data-toggle='tooltip' data-placement='right' title='{{weight}}'></a>" +
-	"<p>{{id}}</p></div>" +
-	"{{/weights}}</div>" +
+var template =
+	"<div class='row'>" +
+	"{{#weights}}" +
+	"<div class>" +
+	"<div class='card'>" +
+	"<div class='header'>" +
+	"<h3>Name</h3>" +
+	"</div>" +
+	"<div class='image'>" +
+	"<img src='{{img}}' class='img-responsive'>" +
+	"</div>" +
+	"<div class='content'>" +
+	"<h4>@{{id}}</h4>" +
+	"<p>Description will be added</p>" +
+	"</div>" +
+	"<div class='view'>" +
+	"<a class='btn btn-info btn-sm' href='https://mobile.twitter.com/{{id}}' target='_blank'>View Profile</a>" +
+	"</div>" +
+	"</div>" +
+	"</div>" +
+	"{{/weights}}" +
+	"</div>" +
 
-	"<h4>PageRank</h4>" +
-	"<div class='row' align='center'>{{#pgrks}}" +
-	"<div class='col-md-4'>" +
-	"<a href='https://twitter.com/{{id}}' target='_blank'>" +
-	"<img src='{{img}}' data-toggle='tooltip' data-placement='right' title='{{pgrk}}'></a>" +
-	"<p>{{id}}</p></div>" +
-	"{{/pgrks}}</div>" +
+	"<div class='row'>" +
+	"{{#pgrks}}" +
+	"<div class>" +
+	"<div class='card'>" +
+	"<div class='header'>" +
+	"<h3>Name</h3>" +
+	"</div>" +
+	"<div class='image'>" +
+	"<img src='{{img}}' class='img-responsive'>" +
+	"</div>" +
+	"<div class='content'>" +
+	"<h4>@{{id}}</h4>" +
+	"<p>Description will be added</p>" +
+	"</div>" +
+	"<div class='view'>" +
+	"<a class='btn btn-info btn-sm' href='https://mobile.twitter.com/{{id}}' target='_blank'>View Profile</a>" +
+	"</div>" +
+	"</div>" +
+	"</div>" +
+	"{{/pgrks}}" +
+	"</div>" +
 
-	"<h4>Betweenness Centrality</h4>" +
-	"<div class='row' align='center'>{{#bwcts}}" +
-	"<div class='col-md-4'>" +
-	"<a href='https://twitter.com/{{id}}' target='_blank'>" +
-	"<img src='{{img}}' data-toggle='tooltip' data-placement='right' title='{{bwct}}' ></a>" +
-	"<p>{{id}}</p></div>" +
-	"{{/bwcts}}</div>";
+	"<div class='row'>" +
+	"{{#bwcts}}" +
+	"<div class>" +
+	"<div class='card'>" +
+	"<div class='header'>" +
+	"<h3>Name</h3>" +
+	"</div>" +
+	"<div class='image'>" +
+	"<img src='{{img}}' class='img-responsive'>" +
+	"</div>" +
+	"<div class='content'>" +
+	"<h4>@{{id}}</h4>" +
+	"<p>Description will be added</p>" +
+	"</div>" +
+	"<div class='view'>" +
+	"<a class='btn btn-info btn-sm' href='https://mobile.twitter.com/{{id}}' target='_blank'>View Profile</a>" +
+	"</div>" +
+	"</div>" +
+	"</div>" +
+	"{{/bwcts}}" +
+	"</div>";
 
 //translate template to html
 var html = Mustache.to_html(template, stats);
-$("#stats").html(html);
+$("#leaders").html(html);
 
 //check 404 error of profile image
 function imgUrlCheck(url) {
