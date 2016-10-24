@@ -73,7 +73,7 @@ var altStylesheet = cytoscape.stylesheet()
 	.selector('edge')
 		.style({
 			'line-color': '#666',
-			'width': 3,
+			'width': 2,
 			'opacity': 0.5,
 			'curve-style': 'unbundled-bezier',
 			'overlay-color': '#666',
@@ -87,8 +87,17 @@ var altStylesheet = cytoscape.stylesheet()
 	.selector('edge.transparent')
 		.style({
 			'opacity': 0.25
-		})
-;
+		});
+
+// set concentric layout options
+var concentric_options = {
+	name: 'concentric',
+	levelWidth: function () {
+		return 10;
+	},
+	animate: true,
+	animationDuration: 2000
+};
 
 var cy = cytoscape({
 	container: document.getElementById('vis'),
@@ -97,23 +106,21 @@ var cy = cytoscape({
 		edges: dataset.links
 	},
 	style: altStylesheet,
-	layout: {
-		name: 'concentric',
-		animate: true,
-		animationDuration: 2000
-	}
+	layout: concentric_options
 });
 
 // search and zoom to a handle
-$(function() {
+$(function () {
 	$("#submit").click(function () {
-		var query = document.getElementById("query").value.toLowerCase();
-		cy.nodes().forEach(function(node) {
-			if(query == node.id().toLowerCase()) {
+		var query = document.getElementById("query").value;
+		cy.nodes().forEach(function (node) {
+			if(query.toLowerCase() == node.id().toLowerCase()) {
 				var result = cy.$('#' + query);
 				zoomToNode(result);
 				result.addClass('hover');
-				setTimeout(function(){ result.removeClass('hover'); }, 1500);
+				setTimeout(function () {
+					result.removeClass('hover');
+				}, 3000);
 			}
 		});
 	})
@@ -121,14 +128,14 @@ $(function() {
 
 // set manipulation events
 var setEvents = cy
-	.on('click', 'node', function(){
+	.on('click', 'node', function () {
 		zoomToNode(this)
 	})
-	.on('doubleTap', 'node', function(){
+	.on('doubleTap', 'node', function () {
 		var url = 'https://mobile.twitter.com/';
 		window.open(url + this.id(),'_blank');
 	})
-	.on('mouseover', 'node', function(e){
+	.on('mouseover', 'node', function (e) {
 		this.addClass('hover');
 		var selectedNode = e.cyTarget;
 		var connectedEles = selectedNode.connectedEdges()
@@ -143,13 +150,12 @@ var setEvents = cy
 			.union(selectedNode.connectedEdges().connectedNodes());
 		cy.elements().removeClass('transparent');
 		connectedEles.removeClass('highlight');
-	})
-;
+	});
 
 // add a zooming animation
-var zoomToNode = function(node) {
+var zoomToNode = function (node) {
 	cy.animate({
-		zoom: 1.0,
+		zoom: 0.75,
 		center: {
 			eles: node
 		}
@@ -161,7 +167,7 @@ var zoomToNode = function(node) {
 // add a custom doubleTab event
 var tappedBefore;
 var tappedTimeout;
-cy.on('tap', function(event) {
+cy.on('tap', function (event) {
 	var tappedNow = event.cyTarget;
 	if (tappedTimeout && tappedBefore) {
 		clearTimeout(tappedTimeout);
@@ -170,30 +176,31 @@ cy.on('tap', function(event) {
 		tappedNow.trigger('doubleTap');
 		tappedBefore = null;
 	} else {
-		tappedTimeout = setTimeout(function(){ tappedBefore = null; }, 300);
+		tappedTimeout = setTimeout(function () {
+			tappedBefore = null;
+		}, 300);
 		tappedBefore = tappedNow;
 	}
 });
 
 // set layout change events
-$('#concentric').on('mousedown', function(){
+$('#concentric').on('mousedown', function () {
+	cy.layout(concentric_options);
+});
+
+$('#cose-bilkent').on('mousedown', function () {
 	cy.layout({
-		name: 'concentric',
-		animate: true,
+		name: 'cose',
+		idealEdgeLength: 50,
+		gravity: 0.25,
+		numIter: 500,
+		edgeElasticity: 0.45,
+		animate: 'end',
 		animationDuration: 2000
 	});
 });
 
-$('#cose-bilkent').on('mousedown', function(){
-	cy.layout({
-		name: 'cose-bilkent',
-		tile: false,
-		animate: true,
-		animationDuration: 2000
-	});
-});
-
-$('#circle').on('mousedown', function(){
+$('#circle').on('mousedown', function () {
 	cy.layout({
 		name: 'circle',
 		animate: true,
@@ -201,9 +208,12 @@ $('#circle').on('mousedown', function(){
 	});
 });
 
-$('#grid').on('mousedown', function(){
+$('#grid').on('mousedown', function () {
 	cy.layout({
 		name: 'grid',
+		sort: function (a, b) {
+			return b.data('weight') - a.data('weight');
+		},
 		animate: true,
 		animationDuration: 2000
 	});
