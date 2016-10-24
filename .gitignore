@@ -1,10 +1,6 @@
-node_modules/
-data/
 .env
 .DS_Store
-*.py
 .idea/
-js/network-stats.js
-stats.html
-package.json
+data/
+network-stats.js
 
