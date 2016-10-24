@@ -1,3 +1,8 @@
+// set the height of the visualisation container as responsive
+var w = window.innerWidth;
+var h = window.innerHeight;
+$("#vis").css({ "height": h, "width": w });
+
 // initialize a base graph
 /**
  * define default style
@@ -107,6 +112,16 @@ var cy = cytoscape({
 	},
 	style: altStylesheet,
 	layout: concentric_options
+});
+
+// initialize auto-complete
+var handles = [];
+cy.nodes().forEach(function (node) {
+	handles.push(node.id());
+});
+$("#query").typeahead({
+	source: handles,
+	items: 10
 });
 
 // search and zoom to a handle
