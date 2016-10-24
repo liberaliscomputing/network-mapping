@@ -26,9 +26,6 @@
 				<!-- star un-collapsed navbar-->
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<!--
-						<li class="active"><a href="index.html">Home</a></li>
-						-->
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Visualisation <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
@@ -38,31 +35,24 @@
 								<li id="grid"><a href="#">Grid</a></li>
 							</ul>
 						</li>
-						<li><a href="#leaders">Connecting Leaders</a></li>
+						<li><a href="#people">Connecting People</a></li>
 					</ul>
-					<!--
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#about">About</a></li>
+						<li><a href="#about" data-toggle="modal" data-target="#about">About</a></li>
 					</ul>
-					-->
-
-					<ul class="nav navbar-nav navbar-right">
-						<li id="search"><a>Search</a></li>
-					</ul>
-
 					<form class="navbar-form navbar-right" role="search">
 						<div class="form-group">
 							<div class="input-group">
 								<span class="input-group-addon">@</span>
-								<input type="text" class="form-control" id="query" placeholder="Search @people">
+								<input type="text" class="form-control" id="query" data-provide="typeahead" placeholder="Search @people">
 								<span class="input-group-btn">
-									<button id="submit" class="btn btn-default" type="button">Search</button>
+									<button type="button" class="btn btn-default" id="submit">Search</button>
 								</span>
 							</div>
 						</div>
 					</form>
-
 				</div>
+
 			</div>
 		</nav>
 
@@ -70,13 +60,63 @@
 			<div id="vis"></div>
 		</div>
 
-		<div id="leaders" class="container">
+		<div id="people" class="container">
 		</div>
 
-		<!--
-		<div id="about" class="container">
+		<!-- about section as modal -->
+		<div id="about" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h3 class="modal-title">Welcome to MozFest Network Mapping!</h3>
+					</div>
+					<div class="modal-body">
+						<h4 class="breadcrumb">Visualisation: Explore the MozFest network in real time</h4>
+						<p>Four types of visualisations guide you to explore how the network looks like.</p>
+						<ul>
+							<li>Concentric: Places people with more connections in levels toward the centre</li>
+							<li>CoSE-Bilkent: Displays the network in a classic way a.k.a. force layout</li>
+							<li>Circle: Randomly distributes people on a globe</li>
+							<li>Grid: Places people with more connections toward upper rows in a grid</li>
+						</ul>
+						<p>Navigate and interact with the network.</p>
+						<ul>
+							<li>Search people with Twitter handles (e.g. mozillafestival).</li>
+							<li>Hover over, click, or double-click nodes.</li>
+						</ul>
+						<hr>
+						<h4 class="breadcrumb">Connecting People: Meet with other participants</h4>
+						<p>Take a look at participant cards to find whom you should connect with.</p>
+						<ul>
+							<li>Chance Encounter: Randomly displays registered participants</li>
+							<li>Recent Registration: Displays recently registered participants</li>
+							<li>Community Bridge: Leaders bridging unconnected people (betweenness)</li>
+						</ul>
+						<hr>
+						<h4 class="breadcrumb">Want to join? Register your Twitter handle!</h4>
+						<p>Submit your Twitter handle via <a href="#" target="_blank">bit.ly/something</a> or the form below:</p>
+						<form class="navbar-form" role="search">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">@</span>
+									<input type="text" class="form-control" id="handle" placeholder="Your Twitter handle">
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-default" id="register" >Submit</button>
+									</span>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+
+			</div>
 		</div>
-		-->
 
 		<div class="container">
 			<footer>
@@ -86,8 +126,8 @@
 							<li class="pull-right"><a href="#top">Back to top</a></li>
 							<li><a href="https://www.facebook.com/meenchul.kim" target="_blank" class="icon fa-facebook">Facebook</a></li>
 							<li><a href="https://twitter.com/timerides" target="_blank">Twitter</a></li>
-							<li><a href="https://github.com/liberaliscomputing/network-mapping-js" target="_blank">GitHub</a></li>
-							<li><a href="#about">About</a></li>
+							<li><a href="https://github.com/liberaliscomputing/network-mapping" target="_blank">GitHub</a></li>
+							<li><a href="#about" data-toggle="modal" data-target="#about">About</a></li>
 						</ul>
 						<p>Developed by <a href="http://www.meenchulkim.info" target="_blank">Meen Chul Kim</a>.</p>
 						<p>Code released under the <a href="https://github.com/liberaliscomputing/network-mapping-js/blob/master/LICENSE" target="_blank">MPL 2.0</a>.</p>
@@ -99,19 +139,23 @@
 
 		<script src="bower_components/jquery/jquery.min.js"></script>
 		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="bower_components/matchHeight/jquery.matchHeight-min.js"></script>
 		<script src="bower_components/cytoscape/dist/cytoscape.min.js"></script>
 		<script src="bower_components/cytoscape-cose-bilkent/cytoscape-cose-bilkent.js"></script>
 		<script src="bower_components/mustache.js/mustache.min.js"></script>
-		<!--
-		<script src="bower_components/flip/dist/jquery.flip.min.js"></script>
-		-->
-		<script src="js/manipulate.js"></script>
+		<script src="js/typeahead.min.js"></script>
 		<script src="js/network-data.js"></script>
 		<script src="js/network-mapping.js"></script>
-		<script src="js/network-stats.js"></script>
+		<script src="js/connecting-people.js"></script>
 		<script>
-			$("#search").click(function(){
-				$("form").slideToggle(1000, "swing");
+			// register a given handle
+			$(function () {
+				$("#register").click(function () {
+					var handle = document.getElementById("handle").value;
+					// check
+					alert("Thank you! We registered your twitter handle to the app! " +
+						"It takes some time to get it rendered on mapping.");
+				})
 			});
 		</script>
 	</body>
