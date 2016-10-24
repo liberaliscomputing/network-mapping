@@ -1,0 +1,24 @@
+{
+  "name": "network-mapping",
+	"version": "1.0.0"
+  "homepage": "http://meenchulkim.info/",
+  "authors": [
+    "Meen Chul Kim"
+  ],
+  "description": "A network mapping app for Mozilla Festival",
+  "main": "network-mapping.js",
+  "keywords": [
+    "network",
+    "visualization"
+  ],
+  "license": "MPL-2.0",
+  "dependencies": {
+		"jquery": "^2.0.3",
+		"boostrap": "^3.3.6",
+		"cytoscape": "^2.7.8",
+    "cytoscape-cose-bilkent": "^1.3.8",
+    "bootswatch": "~3.3.6+2",
+    "matchHeight": "matchheight#^0.7.0",
+    "mustache.js": "mustache#^2.2.1"
+  }
+}
