@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="bower_components/bootswatch/darkly/bootstrap.min.css" media="all">
+    <link type="text/css" rel="stylesheet" href="css/normalize.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <title>MozFest Network Mapping</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="register">
+        <form class="navbar-form" role="search">
+          <div class="register-header">
+            <h3>Register your handle</h3>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">@</span>
+              <input type="text" class="form-control" id="handle" placeholder="Your Twitter handle">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" id="register" >Submit</button>
+              </span>
+            </div>
+          </div>
+          <div class="register-footer">
+            <a href="index.html">&#8592; Back to the Main Page</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script>
+      // register a given handle
+      $(function () {
+        $("#register").click(function () {
+          var handle = document.getElementById("handle").value;
+          // check
+          alert("Thank you! We registered your twitter handle to the app! " +
+            "It takes some time to get it rendered on mapping.");
+        });
+      });
+    </script>
+  </body>
+</html>
