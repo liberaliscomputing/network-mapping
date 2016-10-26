@@ -10,6 +10,25 @@
   padding: 4em 0 4em;
 }
 
+/* custom register class */
+.register {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  margin-top: 4em;
+}
+
+.register-header {
+  margin-bottom: 1em;
+}
+
+.register-footer  {
+  margin-top: 1em;
+}
+
 /* custom card class */
 .card-lead {
   text-align: center;
@@ -30,6 +49,10 @@
 }
 
 .card-img {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   justify-content: center;
   align-items: center;
