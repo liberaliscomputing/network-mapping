@@ -130,20 +130,20 @@ $(function () {
 		cy.nodes().forEach(function (node) {
 			if(query.toLowerCase() == node.id().toLowerCase()) {
 				var result = cy.$('#' + query);
-				zoomToNode(result);
+        cy.animate({ zoom: 0.25, center: { eles: result } }, { duration: 1000 });
 				result.addClass('hover');
 				setTimeout(function () {
 					result.removeClass('hover');
 				}, 3000);
 			}
 		});
-	})
+	});
 });
 
 // set manipulation events
 var setEvents = cy
 	.on('click', 'node', function () {
-		zoomToNode(this)
+    cy.animate({ zoom: 0.75, center: { eles: this } }, { duration: 1000 });
 	})
 	.on('doubleTap', 'node', function () {
 		var url = 'https://mobile.twitter.com/';
@@ -165,18 +165,6 @@ var setEvents = cy
 		cy.elements().removeClass('transparent');
 		connectedEles.removeClass('highlight');
 	});
-
-// add a zooming animation
-var zoomToNode = function (node) {
-	cy.animate({
-		zoom: 0.75,
-		center: {
-			eles: node
-		}
-	}, {
-		duration: 1000
-	});
-};
 
 // add a custom doubleTab event
 var tappedBefore;
