@@ -59,7 +59,8 @@ var template =
 	"<p>{{data.description}}</p>" +
 	"</div>" +
 	"<div class='card-view'>" +
-	"<a class='btn btn-info btn-sm' href='https://mobile.twitter.com/{{data.id}}' target='_blank'>View Profile</a>" +
+	"<a class='btn btn-info btn-sm' href='https://mobile.twitter.com/{{data.id}}' target='_blank' " +
+  "onclick=\"ga(\'send\', \'event\', \'view\', \'connecting-people\', \'card-individual\');\">View Profile</a>" +
 	"</div>" +
 	"</div>" +
 	"</div>" +
@@ -82,7 +83,8 @@ var template =
 	"<p>{{data.description}}</p>" +
 	"</div>" +
 	"<div class='card-view'>" +
-	"<a class='btn btn-info btn-sm' href='https://mobile.twitter.com/{{data.id}}' target='_blank'>View Profile</a>" +
+  "<a class='btn btn-info btn-sm' href='https://mobile.twitter.com/{{data.id}}' target='_blank' " +
+  "onclick=\"ga(\'send\', \'event\', \'view\', \'connecting-people\', \'card-individual\');\">View Profile</a>" +
 	"</div>" +
 	"</div>" +
 	"</div>" +
@@ -105,7 +107,8 @@ var template =
 	"<p>{{description}}</p>" +
 	"</div>" +
 	"<div class='card-view'>" +
-	"<a class='btn btn-info btn-sm' href='https://mobile.twitter.com/{{id}}' target='_blank'>View Profile</a>" +
+  "<a class='btn btn-info btn-sm' href='https://mobile.twitter.com/{{data.id}}' target='_blank' " +
+  "onclick=\"ga(\'send\', \'event\', \'view\', \'connecting-people\', \'card-individual\');\">View Profile</a>" +
 	"</div>" +
 	"</div>" +
 	"</div>" +
