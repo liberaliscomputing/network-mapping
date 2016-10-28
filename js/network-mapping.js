@@ -1,7 +1,6 @@
 // set the height of the visualisation container as responsive
-var w = window.innerWidth;
 var h = window.innerHeight;
-$("#vis").css({ "height": h, "width": w });
+$("#vis").css({ "height": h });
 
 // initialize a base graph
 /**
